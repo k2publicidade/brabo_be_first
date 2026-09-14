@@ -1,0 +1,16 @@
+/* Opacity belongs only to the background, never to the card or copy. */
+.story-film { position: absolute; inset: 0; z-index: 0; opacity: .4; pointer-events: none; }
+.story-film__poster, .story-film__video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; object-position: left center;
+}
+.story-film__video { visibility: hidden; }
+.hero.uses-frame-sequence .story-film__video { display: none; }
+.hero.uses-frame-sequence .story-film__poster { visibility: visible; }
+.hero.has-story-video .story-film__video { visibility: visible; }
+.hero.has-story-video .story-film__poster { visibility: hidden; }
+.manifesto__ring { z-index: 1; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero.has-story-video .story-film__video { visibility: hidden; }
+  .hero.has-story-video .story-film__poster { visibility: visible; }
+}

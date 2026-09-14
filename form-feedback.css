@@ -1,0 +1,194 @@
+/* BRABO invitation feedback — deep-jade validation, restrained editorial motion. */
+.submit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color .45s var(--ease), background-color .45s var(--ease), border-color .45s var(--ease), transform .2s ease;
+}
+
+.submit::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(100deg, #173e31, #246348 58%, #2f7958);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .65s var(--ease);
+}
+
+.submit__icon {
+  position: relative;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+}
+
+.submit__arrow,
+.submit__check {
+  grid-area: 1 / 1;
+  transition: opacity .3s ease, transform .45s var(--ease);
+}
+
+.submit__check {
+  width: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: scale(.55) rotate(-12deg);
+}
+
+.submit.is-loading {
+  cursor: progress;
+  opacity: 1;
+}
+
+.submit.is-loading .submit__arrow {
+  animation: brabo-loading 1.05s ease-in-out infinite;
+}
+
+.submit.is-success {
+  border-color: #246348;
+  color: #f4efe3;
+  opacity: 1;
+}
+
+.submit.is-success::before { transform: scaleX(1); }
+.submit.is-success .submit__arrow { opacity: 0; transform: translateX(12px); }
+.submit.is-success .submit__check { opacity: 1; transform: scale(1) rotate(0); }
+.submit:hover .submit__icon { transform: none; }
+.submit.is-error { animation: brabo-error .36s ease; }
+
+@keyframes brabo-loading {
+  0%, 100% { opacity: .35; transform: translateX(-4px); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+
+@keyframes brabo-error {
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+.success {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(126, 181, 137, .18), transparent 34%),
+    linear-gradient(145deg, #173b2d 0%, #0f2e24 55%, #0a251d 100%);
+  color: #f3eee2;
+  transition: opacity .6s ease, visibility .6s;
+}
+
+.success::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.success__halo {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: min(70vw, 760px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(213, 230, 213, .16);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.25);
+}
+
+.success__halo--two { width: min(92vw, 1040px); }
+.success.is-visible .success__halo--one { animation: brabo-halo 1.25s .12s var(--ease) forwards; }
+.success.is-visible .success__halo--two { animation: brabo-halo 1.45s .28s var(--ease) forwards; }
+
+.success__inner {
+  width: min(620px, 100%);
+  transform: translateY(32px) scale(.97);
+  opacity: 0;
+  transition: transform .9s var(--ease), opacity .65s ease;
+}
+
+.success.is-visible .success__inner { transform: none; opacity: 1; }
+
+.success__eyebrow {
+  margin-bottom: 28px;
+  color: rgba(237, 230, 211, .62);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.success.is-visible .success__eyebrow { animation: brabo-reveal .6s .3s var(--ease) forwards; }
+
+.success__mark {
+  width: 66px;
+  height: 66px;
+  margin-bottom: 30px;
+  border: 0;
+  color: #eef0d8;
+}
+
+.success__mark svg { width: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.25; }
+.success__mark circle { stroke-dasharray: 184; stroke-dashoffset: 184; transform: rotate(-90deg); transform-origin: center; }
+.success__mark path { stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 39; stroke-dashoffset: 39; }
+.success.is-visible .success__mark circle { animation: brabo-draw .8s .18s var(--ease) forwards; }
+.success.is-visible .success__mark path { animation: brabo-draw .48s .72s var(--ease) forwards; }
+
+.success__title { color: #f3eee2; }
+.success__sub { color: #b9d1b8; }
+
+.success__back {
+  border-color: rgba(243, 238, 226, .52);
+  background: transparent;
+  color: #f3eee2;
+  transition: color .3s ease, background .3s ease, border-color .3s ease, transform .3s var(--ease);
+}
+
+.success__back:hover {
+  border-color: #f3eee2;
+  background: #f3eee2;
+  color: #123226;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.success__back:active { background: #dfe7d8; transform: translateY(0); }
+
+@keyframes brabo-draw { to { stroke-dashoffset: 0; } }
+@keyframes brabo-reveal { to { opacity: 1; transform: none; } }
+@keyframes brabo-halo {
+  55% { opacity: .8; }
+  100% { opacity: .3; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (max-width: 520px) {
+  .success__halo { width: 135vw; }
+  .success__halo--two { width: 190vw; }
+  .success__title { font-size: clamp(54px, 18vw, 76px); }
+  .success__back { margin-top: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit.is-loading .submit__arrow,
+  .submit.is-error,
+  .success.is-visible .success__halo,
+  .success.is-visible .success__eyebrow,
+  .success.is-visible .success__mark circle,
+  .success.is-visible .success__mark path { animation: none !important; }
+  .success.is-visible .success__eyebrow { opacity: 1; transform: none; }
+  .success.is-visible .success__mark circle,
+  .success.is-visible .success__mark path { stroke-dashoffset: 0; }
+}

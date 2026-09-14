@@ -1,0 +1,24 @@
+/* Scroll owns --box-*; the pointer owns --pointer-*. Neither overwrites the other. */
+.product {
+  /* A filter on a preserve-3d parent flattens its six faces. Use the floor shadow. */
+  filter: none;
+  transform:
+    translate3d(calc(var(--box-x, 0px) + var(--pointer-x, 0px)), calc(var(--box-y, 0px) + var(--pointer-y, 0px)), 0)
+    rotateX(calc(var(--box-rx, -8deg) + var(--pointer-rx, 0deg)))
+    rotateY(calc(var(--box-ry, -24deg) + var(--pointer-ry, 0deg)))
+    rotateZ(var(--box-rz, -2deg)) scale(var(--box-scale, .84));
+}
+.manifesto__sticky.is-pointer-active .box-float { animation-play-state: paused; }
+.box-face--front::before {
+  background:
+    radial-gradient(ellipse at var(--light-x, 78%) var(--light-y, 15%), rgba(255, 230, 181, var(--light-alpha, .06)), transparent 65%),
+    repeating-linear-gradient(105deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px),
+    linear-gradient(115deg, transparent 15%, rgba(226,189,117,.11) 47%, transparent 62%);
+}
+.box-shadow {
+  transform: translateX(calc(-50% + var(--floor-x, 0px))) rotateX(72deg) scale(var(--shadow-scale, 1));
+}
+@media (prefers-reduced-motion: reduce) {
+  .product { transform: rotateX(-7deg) rotateY(-20deg) scale(.84); will-change: auto; }
+  .box-float { animation: none; }
+}

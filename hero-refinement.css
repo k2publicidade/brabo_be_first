@@ -1,0 +1,71 @@
+/* Editorial hierarchy; the original vector remains the brand's source of truth. */
+.hero__stage {
+  min-height: min(82svh, 780px);
+  background: #090a08;
+  border-bottom: 1px solid rgba(226,189,117,.16);
+}
+.hero__stage::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: url('assets/hero/brand-atmosphere-v1.png') center / cover no-repeat;
+  opacity: .7; pointer-events: none;
+}
+.hero__content {
+  width: 100%; max-width: 1600px; margin-inline: auto;
+  padding: clamp(128px, 17svh, 160px) var(--pad) 108px;
+}
+.hero__intro { max-width: 65%; }
+.hero .kicker { margin-bottom: 28px; font-size: 10px; letter-spacing: .26em; }
+.hero h1 { font-size: clamp(56px, 6.3vw, 112px); line-height: 1.02; letter-spacing: -.045em; }
+.hero h1 span { white-space: normal; }
+.hero h1 span:last-child { margin-left: 0; color: #dfc99f; -webkit-text-stroke: 0; }
+.hero__statement { max-width: 420px; margin: 26px 0 0; font-size: 15px; line-height: 1.75; color: #c8c6bb; }
+.hero__join {
+  min-height: 54px; margin-top: 28px; padding: 0 24px; gap: 36px;
+  border: 1px solid #d4b477; background: #d4b477; color: #10110c;
+  font-size: 10px; font-weight: 600; letter-spacing: .16em;
+  transition: background .2s ease, border-color .2s ease;
+}
+.hero__join span { color: inherit; }
+.hero__join:hover { background: #efcf95; border-color: #efcf95; }
+.hero__join:focus-visible { outline: 2px solid var(--ivory); outline-offset: 5px; }
+.hero__brand-art {
+  inset: 100px 3% 70px auto; width: 40%; opacity: 1;
+  display: grid; place-items: center;
+}
+.hero__brand-art img {
+  grid-area: 1 / 1; width: 100%; height: min(54svh, 500px); max-height: none;
+  opacity: .95; filter: drop-shadow(0 2px 1px #000) drop-shadow(0 12px 26px rgba(0,0,0,.5));
+}
+.hero__brand-art::after {
+  content: ''; grid-area: 1 / 1; width: 100%; height: min(54svh, 500px);
+  background: linear-gradient(125deg, #6f5a34 8%, #e4ce9c 32%, #fff2d0 42%, #a78b54 58%, #e5cea0 75%, #78613b 96%);
+  -webkit-mask: url('assets/brand/brabo-vertical-white.svg') center / contain no-repeat;
+  mask: url('assets/brand/brabo-vertical-white.svg') center / contain no-repeat;
+  pointer-events: none;
+}
+.hero__wash { background: linear-gradient(90deg, rgba(7,8,6,.76), rgba(7,8,6,.3) 45%, transparent 68%); }
+.hero__scroll { bottom: 22px; font-size: 9px; min-height: 44px; color: #c8c6bb; }
+@media (min-width: 1600px) {
+  .hero__scroll { left: max(var(--pad), calc((100vw - 1600px) / 2 + var(--pad))); }
+}
+@media (max-width: 1000px) {
+  .hero__intro { max-width: 66%; }
+  .hero h1 { font-size: clamp(48px, 6.4vw, 64px); }
+  .hero__brand-art { right: 0; width: 36%; }
+}
+@media (max-width: 600px) {
+  .hero__stage { min-height: 0; }
+  .hero__stage::before { background-position: 65% center; }
+  .hero__content { padding: 112px var(--pad) 92px; }
+  .hero__intro { max-width: none; }
+  .hero .kicker { min-height: 64px; padding-right: 110px; margin-bottom: 18px; font-size: 9px; gap: 10px; }
+  .hero .kicker::before { width: 24px; flex-shrink: 0; }
+  .hero h1 { font-size: clamp(40px, 10.8vw, 64px); }
+  .hero__statement { max-width: 360px; margin-top: 22px; font-size: 14px; }
+  .hero__brand-art { inset: 96px 14px auto auto; width: 110px; }
+  .hero__brand-art img, .hero__brand-art::after { height: 110px; }
+  .hero__join { margin-top: 24px; width: 100%; max-width: 340px; justify-content: space-between; }
+  .hero__wash { background: rgba(7,8,6,.45); }
+  .hero__brand-art { z-index: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__intro { animation: none; } }
